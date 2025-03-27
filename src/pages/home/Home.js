@@ -114,6 +114,7 @@ const Home = () => {
           />
           <Space>
             <Button
+              key="search"
               onClick={() => handleSearchChange()}
               icon={<SearchOutlined />}
               size="small"
@@ -122,6 +123,7 @@ const Home = () => {
               Search
             </Button>
             <Button
+              key="reset"
               onClick={() => {
                 setFilteredUsers(users)
                 setSearch('')
@@ -153,6 +155,7 @@ const Home = () => {
           />
           <Space>
             <Button
+              key="search"
               onClick={() => handleSearchChange()}
               icon={<SearchOutlined />}
               size="small"
@@ -161,6 +164,7 @@ const Home = () => {
               Search
             </Button>
             <Button
+              key="reset"
               onClick={() => {
                 setFilteredUsers(users)
                 setSearch('')
@@ -192,6 +196,7 @@ const Home = () => {
           />
           <Space>
             <Button
+              key="search"
               onClick={() => handleSearchChange()}
               icon={<SearchOutlined />}
               size="small"
@@ -200,6 +205,7 @@ const Home = () => {
               Search
             </Button>
             <Button
+              key="reset"
               onClick={() => {
                 setFilteredUsers(users)
                 setSearch('')
@@ -218,7 +224,7 @@ const Home = () => {
       dataIndex: 'action',
       key: 'action',
       render: (text, record) => (
-        <div className="flex flex-row">
+        <div className="flex flex-row" key={record.id}>
           <button
             className="bg-green-500 text-white rounded-md px-2 py-1 mx-1"
             onClick={() => showDrawer(record)}
@@ -253,7 +259,15 @@ const Home = () => {
           <span className='lg:text-2xl md:text-2xl text-[16px] font-medium md:w-64'>Users ({totalUsers})</span>
         </div>
         <div className="flex flex-row w-full md:px-16 lg:px-16 px-4 pt-8">
-          <Table columns={columns} dataSource={filteredUsers} className='w-full' bordered pagination={{ pageSize: 6, total: totalUsers }} onChange={handlePageChange} />
+          <Table
+            columns={columns}
+            dataSource={filteredUsers}
+            className='w-full'
+            bordered
+            pagination={{ pageSize: 6, total: totalUsers }}
+            onChange={handlePageChange}
+            rowKey="id"
+          />
         </div>
         <DrawerComponent onClose={onClose} open={open} data={selectedUser} />
       </div>

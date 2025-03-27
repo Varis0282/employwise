@@ -1,14 +1,6 @@
 import axios from "axios";
 import { baseUrl } from '../../baseURL'
 
-const token = localStorage.getItem('token');
-
-const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-}
-
-
 
 export const loginUser = async (body) => {
     try {
@@ -23,6 +15,12 @@ export const loginUser = async (body) => {
 
 export const getUsersList = async (body) => {
     try {
+        const token = localStorage.getItem('token');
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
         if (token) {
             const data = await axios.get(`${baseUrl}/api/users`,
                 {
@@ -52,6 +50,12 @@ export const editUser = async (body) => {
 
 export const deleteUser = async (body) => {
     try {
+        const token = localStorage.getItem('token');
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
         const data = await axios.delete(`${baseUrl}/api/users/${body.id}`, {
             headers,
             data: { id: body.id }
